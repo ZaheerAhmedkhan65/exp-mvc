@@ -1,9 +1,9 @@
 ### express-mvc-architecture
 
 [![npm version](https://img.shields.io/badge/npm-v1.0.1-lightgrey.svg)](https://www.npmjs.com/)
-[![downloads](https://img.shields.io/npm/dm/create-express-architecture.svg)](https://www.npmjs.com/package/express-mvc-architecture)
+[![downloads](https://img.shields.io/npm/dm/express-mvc-architecture.svg)](https://www.npmjs.com/package/express-mvc-architecture)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![stars](https://img.shields.io/github/stars/ZaheerAhmedkhan65/express-mvc-architecture.svg?style=social)](https://github.com/ZaheerAhmedkhan65/express-mvc-architecture)
+[![stars](https://img.shields.io/github/stars/ZaheerAhmedkhan65/express-mvc-architecture.svg?style=social)](https://github.com/ZaheerAhmedkhan65/express-mvc-architecture)'
 
 A professional Node.js Express project scaffold generator that instantly creates a clean, scalable, and production-ready folder structure based on the MVC architecture.
 
