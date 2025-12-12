@@ -1,6 +1,6 @@
 {
   "name": "express-mvc-architecture",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Generate a professional Node.js + Express project structure",
   "main": "index.js",
   "bin": {
@@ -10,10 +10,21 @@
     "express",
     "mvc",
     "project",
-    "architecture"
+    "architecture",
+    "scaffolding",
+    "generator",
+    "cli",
+    "nodejs",
+    "express-generator"
   ],
   "author": "Zaheer Ahmed Khan",
-  "repository": "https://github.com/ZaheerAhmedkhan65/express-mvc-architecture.git",
-  "bugs": "https://github.com/ZaheerAhmedkhan65/express-mvc-architecture.git/issues",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZaheerAhmedkhan65/express-mvc-architecture.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ZaheerAhmedkhan65/express-mvc-architecture/issues"
+  },
+  "homepage": "https://github.com/ZaheerAhmedkhan65/express-mvc-architecture#readme"
 }

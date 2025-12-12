@@ -46,7 +46,7 @@ Designed for developers who want to skip boilerplate setup and start building fe
 - Works instantly via npx—no global install required
 
 ### 📁 Generated Project Structure
-
+```
 myproject/
 │
 ├── server.js
@@ -75,6 +75,7 @@ myproject/
 │       └── uploads/
 │
 └── package.json   (you will install your own dependencies)
+```
 
 **This structure is suitable for:**
 
@@ -103,8 +104,8 @@ with the full project architecture.
 **Using NPM (global install):**
 
 ```bash
-npm install -g create-express-architecture
-create-express-architecture myapp
+npm install -g express-mvc-architecture
+npx create-express-architecture myapp
 
 ```
 
