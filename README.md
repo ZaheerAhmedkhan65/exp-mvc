@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/badge/npm-v1.0.5-lightgrey.svg)](https://www.npmjs.com/)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![stars](https://img.shields.io/github/stars/ZaheerAhmedkhan65/exp-mvc.svg?style=social)](https://github.com/ZaheerAhmedkhan65/exp-mvc)'
+[![stars](https://img.shields.io/github/stars/ZaheerAhmedkhan65/exp-mvc.svg?style=social)](https://github.com/ZaheerAhmedkhan65/exp-mvc.git)'
 
 A professional Node.js Express project scaffold generator that instantly creates a clean, scalable, and production-ready folder structure based on the MVC architecture. Includes powerful CLI commands to generate controllers, models, routes, and complete CRUD scaffolds.
 
