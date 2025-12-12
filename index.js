@@ -7,7 +7,7 @@ const projectName = process.argv[2];
 
 if (!projectName) {
     console.log("❗ Please provide a project name: ");
-    console.log("Example: npx create-express-structure myapp");
+    console.log("Example: npx create-express-architecture myapp");
     process.exit(1);
 }
 
@@ -28,10 +28,10 @@ function createFile(filePath, content = "") {
 }
 
 // ------------------------
-//   Project Structure
+//   Project Architecture
 // ------------------------
 
-console.log(`\n🚀 Creating Express project structure in '${projectName}'...\n`);
+console.log(`\n🚀 Creating Express project architecture in '${projectName}'...\n`);
 
 createDir(projectPath);
 
@@ -137,9 +137,9 @@ createFile(
     path.join(projectPath, "README.md"),
     `# ${projectName}
 
-Generated with **express-structure-generator**.
+Generated with **express-mvc-architecture**.
 
-## ✔ Project Structure Ready
+## ✔ Project Architecture Ready
 
 Run:
 

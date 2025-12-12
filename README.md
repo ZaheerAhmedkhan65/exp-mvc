@@ -1,4 +1,14 @@
-### Express MVC Architecture
+### express-mvc-architecture
+
+<!-- ![GitHub](https://img.shields.io/github/stars/ZaheerAhmedkhan65/express-mvc-architecture?style=social)
+
+![GitHub repo size](https://img.shields.io/github/repo-size/ZaheerAhmedkhan65/express-mvc-architecture?style=social)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/ZaheerAhmedkhan65/express-mvc-architecture?style=social)
+
+![GitHub license](https://img.shields.io/github/license/ZaheerAhmedkhan65/express-mvc-architecture?style=social)
+
+![GitHub](https://img.shields.io/github/forks/ZaheerAhmedkhan65/express-mvc-architecture?style=social) -->
 
 A professional Node.js Express project scaffold generator that instantly creates a clean, scalable, and production-ready folder structure based on the MVC architecture.
 
@@ -86,7 +96,7 @@ myproject/
 **Using NPX (recommended):**
 
 ```bash
-npx create-express-structure myapp
+npx create-express-architecture myapp
 ```
 This will create:
 
@@ -98,8 +108,8 @@ with the full project architecture.
 **Using NPM (global install):**
 
 ```bash
-npm install -g create-express-structure
-create-express-structure myapp
+npm install -g create-express-architecture
+create-express-architecture myapp
 
 ```
 
