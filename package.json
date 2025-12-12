@@ -1,10 +1,11 @@
 {
-  "name": "express-mvc-architecture",
-  "version": "1.0.2",
+  "name": "exp-mvc",
+  "version": "1.0.5",
   "description": "Generate a professional Node.js + Express project structure",
   "main": "index.js",
   "bin": {
-    "create-express-architecture": "./index.js"
+    "create-expmvc": "bin/cli.js",
+    "expmvc": "bin/cli.js"
   },
   "keywords": [
     "express",
@@ -21,10 +22,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ZaheerAhmedkhan65/express-mvc-architecture.git"
+    "url": "git+https://github.com/ZaheerAhmedkhan65/exp-mvc.git"
   },
   "bugs": {
-    "url": "https://github.com/ZaheerAhmedkhan65/express-mvc-architecture/issues"
+    "url": "https://github.com/ZaheerAhmedkhan65/exp-mvc/issues"
   },
-  "homepage": "https://github.com/ZaheerAhmedkhan65/express-mvc-architecture#readme"
+  "homepage": "https://github.com/ZaheerAhmedkhan65/exp-mvc#readme",
+  "dependencies": {
+    "commander": "^11.1.0"
+  }
 }
