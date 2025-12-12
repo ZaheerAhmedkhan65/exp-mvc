@@ -1,99 +1,25 @@
-### express-mvc-architecture
+## exp-mvc
 
-[![npm version](https://img.shields.io/badge/npm-v1.0.1-lightgrey.svg)](https://www.npmjs.com/)
-[![downloads](https://img.shields.io/npm/dm/express-mvc-architecture.svg)](https://www.npmjs.com/package/express-mvc-architecture)
+[![npm version](https://img.shields.io/badge/npm-v1.0.5-lightgrey.svg)](https://www.npmjs.com/)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![stars](https://img.shields.io/github/stars/ZaheerAhmedkhan65/express-mvc-architecture.svg?style=social)](https://github.com/ZaheerAhmedkhan65/express-mvc-architecture)'
+[![stars](https://img.shields.io/github/stars/ZaheerAhmedkhan65/exp-mvc.svg?style=social)](https://github.com/ZaheerAhmedkhan65/exp-mvc)'
 
-A professional Node.js Express project scaffold generator that instantly creates a clean, scalable, and production-ready folder structure based on the MVC architecture.
+A professional Node.js Express project scaffold generator that instantly creates a clean, scalable, and production-ready folder structure based on the MVC architecture. Includes powerful CLI commands to generate controllers, models, routes, and complete CRUD scaffolds.
 
 Designed for developers who want to skip boilerplate setup and start building features immediately.
 
-### 🚀 Features
-
-- Generates a complete Express project structure
-
-- Follows industry-standard MVC architecture
-
-- Includes folders for:
-
-- Controllers
-
-- Routes
-
-- Models
-
-- Services
-
-- Helpers
-
-- Middlewares
-
-- Jobs
-
-- Validations
-
-- Utils
-
-- Views
-
-- Assets (CSS, JS, images, uploads)
-
-- Config directory (app + database config)
-
-- Creates starter files with helpful comments
-
-- Works instantly via npx—no global install required
-
-### 📁 Generated Project Structure
-```
-myproject/
-│
-├── server.js
-├── .env.example
-├── README.md
-│
-├── config/
-│   ├── app.js
-│   ├── database.js
-│
-├── src/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── services/
-│   ├── helpers/
-│   ├── middlewares/
-│   ├── validations/
-│   ├── utils/
-│   ├── jobs/
-│   ├── views/
-│   └── assets/
-│       ├── css/
-│       ├── js/
-│       ├── images/
-│       └── uploads/
-│
-└── package.json   (you will install your own dependencies)
-```
-
-**This structure is suitable for:**
-
-- REST APIs
-
-- Full-stack Node.js apps
-
-- MVC-based Express projects
-
-- Scalable enterprise applications
-
-### 🛠 Installation & Usage
-
-**Using NPX (recommended):**
+# Install
 
 ```bash
-npx create-express-architecture myapp
+npm install exp-mvc
 ```
+
+After installing exp-mvc globally, run the following command:
+
+```bash
+create-expmvc new myapp
+```
+
 This will create:
 
 ```bash
@@ -101,67 +27,165 @@ This will create:
 ```
 with the full project architecture.
 
-**Using NPM (global install):**
-
-```bash
-npm install -g express-mvc-architecture
-npx create-express-architecture myapp
-
-```
-
-### ▶ Next Steps After Generation
-
 Inside your generated project folder, install dependencies:
 
 ```bash
 cd myapp
-npm install express dotenv morgan
+npm install
 ```
 
-Run the server:
+configure the database connection in 'config/database.js'.
+add environment variables in '.env'
+
+**Run the server:**
 
 ```bash
 node server.js
 ```
 
-Or install nodemon for development:
+# 🔥 CLI Commands Reference
+
+Once inside your generated project, use the *`expmvc`* command to generate components:
+
+**Generate Complete CRUD Scaffold**
+
+Create a full CRUD module with controller, model, service, route, and validation files:
 
 ```bash
-npm install --save-dev nodemon
-npm run dev
+expmvc generate scaffold User name:string email:string password:string age:number
+```
+
+**Generate Individual Components**
+
+## Generate a controller
+```bash
+expmvc generate controller Product
+```
+
+## Generate a model with fields
+```bash
+expmvc generate model Category name:string description:string
+```
+
+## Generate a route
+```bash
+expmvc generate route Order
+```
+
+## Generate a service
+```bash
+expmvc generate service Auth
+```
+
+## Generate a validation file
+```bash
+expmvc generate validation User
+```
+
+## Generate a view (EJS template)
+```bash
+expmvc generate view home/index
+```
+
+**Command Aliases**
+
+## 'g' is alias for 'generate'
+'expmvc g scaffold User name:string email:string'
+## Short forms
+```bash
+expmvc g c User        # controller
+```
+```bash
+expmvc g m User        # model
+```
+```bash
+expmvc g r User        # route
+```
+```bash
+expmvc g s User        # service
+```
+```bash
+expmvc g v User        # validation
+```
+
+**Field Types Supported**
+
+```bash
+# Available field types:
+name:string           # String field
+age:number            # Number field
+isActive:boolean      # Boolean field
+createdAt:date        # Date field
+tags:array            # Array field
+userId:objectid       # ObjectId reference
 ```
 
 
-### ✨ Why Use This Generator?
+# ✨ Why Use This Generator?
 
-- Saves hours of manual setup
+- *Saves Hours:* Skip repetitive setup and focus on business logic
 
-- Enforces clean architecture
+- *Consistent Architecture:* Enforces clean, maintainable structure
 
-- Easy to scale and maintain
+- *Production Ready:* Includes validation, services, and middleware patterns
 
-- Perfect for:
+- *Scalable:* Perfect for growing applications
 
-- Students
+- *Developer Friendly:* Intuitive CLI with helpful commands
 
-- Backend developers
+**Perfect For:**
 
-- Startups
+- Students learning Express.js
 
-- API bootstrapping
+- Backend developers starting new projects
 
-- Hackathons
+- Startups needing rapid prototyping
 
-### ❤️ Contributing
+- API bootstrapping and hackathons
 
-Pull requests are welcome.
+- Enterprise applications requiring structure
 
-If you want a feature added:
+# 🔧 Advanced Usage
+
+**Custom Templates**
+
+You can customize the generated templates by modifying the generator files in your global installation.
+
+**Integration with Existing Projects**
+
+If you have an existing Express project with the same structure, you can still use the generator commands:
 
 ```bash
-open an issue
+cd existing-express-project
+expmvc generate scaffold Post title:string content:string
 ```
 
-**Thanks for using this package! Don't forget to give a star if you like it.**
+**Environment Variables**
+
+Create a `.env` file in your project root:
+```bash
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/yourdb
+JWT_SECRET=your-secret-key
+NODE_ENV=development
+```
+
+# ❤️ Contributing
+
+We welcome contributions! Here's how you can help:
+
+1.*Report Bugs:* Open an issue with detailed description
+
+2.*Request Features:* Suggest new features or improvements
+
+3.*Submit PRs:* Fork the repo and submit pull requests
+
+4.*Improve Documentation:* Help make the docs better
+
+
+
+*Thanks for using exp-mvc! Don't forget to give a ⭐ on GitHub if you like it!*
+
+Built with ❤️ for the Node.js community.
 
 
