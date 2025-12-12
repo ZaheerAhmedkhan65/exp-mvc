@@ -1,0 +1,19 @@
+{
+  "name": "express-mvc-architecture",
+  "version": "1.0.0",
+  "description": "Generate a professional Node.js + Express project structure",
+  "main": "index.js",
+  "bin": {
+    "create-express-architecture": "./index.js"
+  },
+  "keywords": [
+    "express",
+    "mvc",
+    "project",
+    "architecture"
+  ],
+  "author": "Zaheer Ahmed Khan",
+  "repository": "https://github.com/zaheer-ahmed-khan/express-mvc-architecture",
+  "bugs": "https://github.com/zaheer-ahmed-khan/express-mvc-architecture/issues",
+  "license": "MIT"
+}
