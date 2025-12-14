@@ -114,52 +114,52 @@ expmvc g v User        # validation
 
 ```bash
 # Generate User model
-npx expmvc generate model User name:string email:string password:string
+expmvc generate model User name:string email:string password:string
 
 # Generate Post model with User reference
-npx expmvc generate model Post title:string content:string user:ref:User
+expmvc generate model Post title:string content:string user:ref:User
 
 # Generate Comment model with User and Post references
-npx expmvc generate model Comment content:string user:ref:User post:ref:Post
+expmvc generate model Comment content:string user:ref:User post:ref:Post
 ```
 
 ## 2. Create Relationships Between Existing Models:
 
 ```bash
 # Add belongsTo relationship from Post to User
-npx expmvc rel belongsTo Post User --field author
+expmvc rel belongsTo Post User --field author
 
 # Add hasMany relationship from User to Post
-npx expmvc rel hasMany User Post --field posts
+expmvc rel hasMany User Post --field posts
 
 # Add belongsToMany relationship (for tags, categories, etc.)
-npx expmvc rel belongsToMany Post Tag --field tags[]
+expmvc rel belongsToMany Post Tag --field tags[]
 ```
 
 ## 3. Complete Relationship Scaffold:
 
 ```bash
 # Scaffold User-Post relationship (One-to-Many)
-npx expmvc sr User Post hasMany
+expmvc sr User Post hasMany
 
 # Scaffold Post-Comment relationship (One-to-Many)
-npx expmvc sr Post Comment hasMany
+expmvc sr Post Comment hasMany
 
 # Scaffold User-Comment relationship (One-to-Many)
-npx expmvc sr User Comment hasMany
+expmvc sr User Comment hasMany
 ```
 
 ## 4. Generate Complete CRUD with Relationships:
 
 ```bash
 # Generate User scaffold
-npx expmvc generate scaffold User name:string email:string password:string
+expmvc generate scaffold User name:string email:string password:string
 
 # Generate Post scaffold with User reference
-npx expmvc generate scaffold Post title:string content:string user:ref:User
+expmvc generate scaffold Post title:string content:string user:ref:User
 
 # Then add the reverse relationship
-npx expmvc rel hasMany User Post --field posts
+expmvc rel hasMany User Post --field posts
 ```
 
 **Field Types Supported**
