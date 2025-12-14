@@ -1,6 +1,6 @@
 ## exp-mvc
 
-[![npm version](https://img.shields.io/badge/npm-v1.0.5-lightgrey.svg)](https://www.npmjs.com/)
+[![npm version](https://img.shields.io/badge/npm-v1.0.7-lightgrey.svg)](https://www.npmjs.com/)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![stars](https://img.shields.io/github/stars/ZaheerAhmedkhan65/exp-mvc.svg?style=social)](https://github.com/ZaheerAhmedkhan65/exp-mvc.git)'
 
@@ -31,7 +31,7 @@ Inside your generated project folder, install dependencies:
 
 ```bash
 cd myapp
-npm install express dotenv morgan ejs express-ejs-layouts mongoose joi method-override
+npm install install
 ```
 
 configure the database connection in 'config/database.js'.
@@ -40,7 +40,11 @@ add environment variables in '.env'
 **Run the server:**
 
 ```bash
-node server.js
+npm run dev
+```
+or
+```bash
+npm start
 ```
 
 # 🔥 CLI Commands Reference
