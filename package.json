@@ -1,6 +1,6 @@
 {
   "name": "exp-mvc",
-  "version": "1.0.7",
+  "version": "1.0.70",
   "description": "Generate a professional Node.js + Express project structure",
   "main": "index.js",
   "bin": {
