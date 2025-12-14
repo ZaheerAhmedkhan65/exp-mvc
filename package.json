@@ -1,6 +1,6 @@
 {
   "name": "exp-mvc",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Generate a professional Node.js + Express project structure",
   "main": "index.js",
   "bin": {
@@ -16,6 +16,12 @@
     "cli",
     "nodejs",
     "express-generator"
+  ],
+  "files": [
+    "commands",
+    "lib",
+    "bin",
+    "assets"
   ],
   "author": "Zaheer Ahmed Khan",
   "license": "MIT",
