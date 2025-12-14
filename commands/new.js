@@ -45,6 +45,7 @@ function createProject(projectName) {
         "src/utils",
         "src/jobs",
         "src/views",
+        "src/views/layouts",
         "src/assets/css",
         "src/assets/js",
         "src/assets/images",
@@ -73,18 +74,30 @@ app.listen(PORT, () => console.log("Server running on port", PORT));
 
     createFile(
         path.join(projectPath, "config/app.js"),
-        `const express = require("express");
+        `// config/app.js
+const express = require("express");
 const morgan = require("morgan");
-const routes = require("../src/routes");
+const methodOverride = require("method-override");
+const expressLayouts = require("express-ejs-layouts");
+const routes = require("../src/routes/index");
+const path = require("path");
 
 const app = express();
+
+app.use(methodOverride("_method"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
+app.set("views", path.join(__dirname, "../src/views"));
+app.set("view engine", "ejs");
+app.use(expressLayouts);
+
+app.set("layout", "layouts/application");
+
 // API Routes
-app.use("/api", routes);
+app.use("/", routes);
 
 module.exports = app;
 `
@@ -92,9 +105,19 @@ module.exports = app;
 
     createFile(
         path.join(projectPath, "config/database.js"),
-        `// Database Connection (Customize as needed)
-module.exports = function connectDB() {
-    console.log("⚡ Database connected (configure this manually)");
+        `// config/database.js
+const mongoose = require("mongoose");
+require("dotenv).config();
+
+module.exports = async function connectDB() {
+    try {
+        await mongoose.connect(process.env.MONGODB_URI);
+
+        console.log("⚡ MongoDB connected successfully");
+    } catch (error) {
+        console.error("❌ MongoDB connection failed:", error.message);
+        process.exit(1);
+    }
 };
 `
     );
@@ -115,20 +138,27 @@ module.exports = router;
     );
 
     createFile(
-        path.join(projectPath, "src/controllers/example.controller.js"),
-        `// Example Controller
-module.exports.example = (req, res) => {
-    res.send("Example Controller Working!");
-};
-`
-    );
-
-    createFile(
-        path.join(projectPath, "src/services/example.service.js"),
-        `// Example Service
-module.exports.hello = () => {
-    return "Hello from Service!";
-};
+        path.join(projectPath, "src/views/layouts/application.ejs"),
+        `<--!-- Application Layout -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || 'exp-mvc' %></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <%- body %>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+</body>
+</html>
 `
     );
 
@@ -136,24 +166,21 @@ module.exports.hello = () => {
         path.join(projectPath, "README.md"),
         `# ${projectName}
 
-Generated with **express-mvc-architecture**.
+Generated with **exp-mvc**.
 
 ## ✔ Project Architecture Ready
 
 Run:
 
 \`\`\`
-npm install
-npm run dev
+cd ${projectName}
+npm install express dotenv morgan ejs express-ejs-layouts mongoose joi method-override
+node server.js
 \`\`\`
 
 Now build your app inside:
 
-- src/controllers
-- src/routes
-- src/services
-- src/models
-- etc.
+- ${projectName}
 
 🚀 Happy coding!
 `
@@ -178,6 +205,8 @@ Now build your app inside:
 *.log
 npm-debug.log*
 
+node_modules
+
 # OS files
 .DS_Store
 Thumbs.db
@@ -194,14 +223,18 @@ EOF
     createFile(
         path.join(projectPath, ".env"),
         `
-PORT=5000
+PORT=3000
+MONGODB_URI=mongodb://localhost:27017/yourdb
+JWT_SECRET=your-secret-key
+NODE_ENV=development
     `
     );
 
     console.log("\n🎉 Done!");
     console.log(`\n👉 Next steps:
    cd ${projectName}
-   npm install express dotenv morgan
+   npm install express dotenv morgan ejs express-ejs-layouts mongoose joi method-override
+   node server.js
 `);
 
     process.exit(0);

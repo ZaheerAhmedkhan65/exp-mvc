@@ -4,7 +4,6 @@
   "description": "Generate a professional Node.js + Express project structure",
   "main": "index.js",
   "bin": {
-    "create-expmvc": "bin/cli.js",
     "expmvc": "bin/cli.js"
   },
   "keywords": [
@@ -29,6 +28,14 @@
   },
   "homepage": "https://github.com/ZaheerAhmedkhan65/exp-mvc#readme",
   "dependencies": {
-    "commander": "^11.1.0"
+    "commander": "^11.1.0",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.2.1",
+    "express-ejs-layouts": "^2.5.1",
+    "joi": "^18.0.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^9.0.1",
+    "morgan": "^1.10.1"
   }
 }
