@@ -17,7 +17,7 @@ npm install exp-mvc
 After installing exp-mvc globally, run the following command:
 
 ```bash
-create-expmvc new myapp
+expmvc new myapp
 ```
 
 This will create:
@@ -31,7 +31,7 @@ Inside your generated project folder, install dependencies:
 
 ```bash
 cd myapp
-npm install
+npm install express dotenv morgan ejs express-ejs-layouts mongoose joi method-override
 ```
 
 configure the database connection in 'config/database.js'.
@@ -108,6 +108,60 @@ expmvc g s User        # service
 expmvc g v User        # validation
 ```
 
+# Relations Between Models
+
+## 1. Generate Individual Models with References:
+
+```bash
+# Generate User model
+npx expmvc generate model User name:string email:string password:string
+
+# Generate Post model with User reference
+npx expmvc generate model Post title:string content:string user:ref:User
+
+# Generate Comment model with User and Post references
+npx expmvc generate model Comment content:string user:ref:User post:ref:Post
+```
+
+## 2. Create Relationships Between Existing Models:
+
+```bash
+# Add belongsTo relationship from Post to User
+npx expmvc rel belongsTo Post User --field author
+
+# Add hasMany relationship from User to Post
+npx expmvc rel hasMany User Post --field posts
+
+# Add belongsToMany relationship (for tags, categories, etc.)
+npx expmvc rel belongsToMany Post Tag --field tags[]
+```
+
+## 3. Complete Relationship Scaffold:
+
+```bash
+# Scaffold User-Post relationship (One-to-Many)
+npx expmvc sr User Post hasMany
+
+# Scaffold Post-Comment relationship (One-to-Many)
+npx expmvc sr Post Comment hasMany
+
+# Scaffold User-Comment relationship (One-to-Many)
+npx expmvc sr User Comment hasMany
+```
+
+## 4. Generate Complete CRUD with Relationships:
+
+```bash
+# Generate User scaffold
+npx expmvc generate scaffold User name:string email:string password:string
+
+# Generate Post scaffold with User reference
+npx expmvc generate scaffold Post title:string content:string user:ref:User
+
+# Then add the reverse relationship
+npx expmvc rel hasMany User Post --field posts
+```
+
 **Field Types Supported**
 
 ```bash
@@ -162,7 +216,7 @@ expmvc generate scaffold Post title:string content:string
 
 **Environment Variables**
 
-Create a `.env` file in your project root:
+Created `.env` file in your project root:
 ```bash
 PORT=3000
 MONGODB_URI=mongodb://localhost:27017/yourdb

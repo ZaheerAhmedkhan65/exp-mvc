@@ -19,7 +19,19 @@ module.exports = function (type, name, fields) {
         case "route":
             return createRoute(name, projectRoot);
         case "view":
-            return createView(name, projectRoot);
+            // For single view generation, create just the basic file
+            const viewDir = path.join(projectRoot, "src/views");
+            if (!fs.existsSync(viewDir)) {
+                fs.mkdirSync(viewDir, { recursive: true });
+            }
+
+            const filename = path.join(viewDir, `${name.toLowerCase()}.ejs`);
+            const content = `<h1>${name} View</h1>
+<p>This is the ${name} view file.</p>`;
+
+            fs.writeFileSync(filename, content.trim());
+            console.log(`✅ View created: ${filename}`);
+            return;
         case "scaffold":
             return createScaffold(name, fields, projectRoot);
         default:
