@@ -31,7 +31,7 @@ Inside your generated project folder, install dependencies:
 
 ```bash
 cd myapp
-npm install install
+npm install
 ```
 
 configure the database connection in 'config/database.js'.
