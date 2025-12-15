@@ -67,9 +67,19 @@ function createProject(projectName) {
 const app = require("./config/app");
 const connectDB = require("./config/database");
 
+// Optional security middleware (auto-installed if used)
+// Uncomment to use:
+// const helmet = require("helmet");
+// const cors = require("cors");
+// const compression = require("compression");
+//
+// app.use(helmet());
+// app.use(cors());
+// app.use(compression());
+
 connectDB();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Server running on port", PORT));
 `
     );
@@ -233,54 +243,89 @@ module.exports = router;
     createFile(
         path.join(projectPath, "src/views/home.ejs"),
         `<!-- Home -->
-<style>
-    body{
-        min-height: 100vh;
-        overflow: hidden;
-    }
-</style>
-<div class="d-flex align-items-center justify-content-center flex-column vh-100">
-
-    <img src="/assets/images/logo.png" width="256" class="mb-4" />
-
-    <div class="bg-light d-flex align-items-center justify-content-center" style="
-    height: 50vh;
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    z-index: -1;
-    border-top-left-radius: 10%;
-    border-top-right-radius: 10%;">
-    <ul class="list-group d-flex text-center mt-4 bg-transparent">
-        <li class="list-group-item border-0 bg-transparent">
-            <strong>App version:</strong>
-            <%= appVersion %>
-        </li>
-        <li class="list-group-item border-0 bg-transparent">
-            <strong>exp-mvc version:</strong>
-            <%= expMvcVersion %>
-        </li>
-        <div class="d-flex flex-row">
-            <li class="list-group-item border-0 bg-transparent">
-                <strong>Express version:</strong>
-                <%= expressVersion %>
-            </li>
-            <li class="list-group-item border-0 bg-transparent">
-                <strong>Nodejs version:</strong>
-                <%= nodeVersion %>
-            </li>
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center min-vh-100 py-5">
+    <div class="text-center mb-5 w-100">
+        <!-- Logo -->
+        <div class="mb-4">
+            <img src="/assets/images/logo.png" alt="Logo" width="256" />
         </div>
-    </ul>
+
+        <!-- Title -->
+        <h1 class="display-5 fw-bold text-primary mb-3">
+            <%= appName %>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="lead text-muted mb-4">Express MVC Architecture Builder</p>
+
+        <!-- Version Cards -->
+        <div class="row justify-content-center g-3 mb-5">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center py-4">
+                        <h6 class="card-subtitle mb-2 text-muted">Exp-MVC version</h6>
+                        <h4 class="card-title fw-bold text-primary">
+                            <%= expMvcVersion %>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center py-4">
+                        <h6 class="card-subtitle mb-2 text-muted">Express version</h6>
+                        <h4 class="card-title fw-bold text-primary">
+                            <%= expressVersion %>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body text-center py-4">
+                        <h6 class="card-subtitle mb-2 text-muted">Node.js version</h6>
+                        <h4 class="card-title fw-bold text-primary">
+                            <%= nodeVersion %>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional: Quick Info Panel -->
+        <div class="bg-light rounded-3 p-4 shadow-sm">
+            <div class="row text-center">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="text-muted small">Framework</div>
+                    <div class="fw-semibold">Express MVC</div>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="text-muted small">Architecture</div>
+                    <div class="fw-semibold">Model-View-Controller</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="text-muted small">Environment</div>
+                    <div class="fw-semibold">Node.js Runtime</div>
+                </div>
+            </div>
+        </div>
     </div>
-    <p class="text-muted">Express MVC Architecture Builder</p>
+
+    <!-- Footer Note -->
+    <div class="mt-5 text-center">
+        <p class="text-muted small">
+            Built with <i class="bi bi-heart-fill text-danger"></i> using Bootstrap 5
+        </p>
+    </div>
 </div>
 `
     );
 
     createFile(
         path.join(projectPath, "src/views/error.ejs"),
-        `<!-- Error --><!-- Error -->
+        `<!-- Error -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -290,8 +335,8 @@ module.exports = router;
 </head>
 <body class="bg-light">
 
-<div class="container vh-100 d-flex align-items-center justify-content-center">
-    <div class="card shadow-lg p-4 text-center" style="max-width: 600px;">
+<div class="container">
+    <div class="p-5">
         <h1 class="text-danger">❌ <%= statusCode %></h1>
         <h4 class="mb-3"><%= message %></h4>
 
@@ -325,7 +370,9 @@ module.exports = router;
                 main: "server.js",
                 scripts: {
                     start: "node server.js",
-                    dev: "nodemon server.js"
+                    dev: "nodemon server.js",
+                    "check-deps": "expmvc check-deps",
+                    "fix-deps": "expmvc fix-deps"
                 },
                 author: "",
                 license: "ISC",
