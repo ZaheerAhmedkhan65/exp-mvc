@@ -1,7 +1,7 @@
 {
   "name": "exp-mvc",
-  "version": "1.0.8",
-  "description": "Generate a professional Node.js + Express project structure",
+  "version": "1.0.90",
+  "description": "Generate a new ExpressJS project in MVC architecture using command line interface (CLI) and auto-dependency installation.",
   "main": "index.js",
   "bin": {
     "expmvc": "bin/cli.js"
@@ -9,13 +9,11 @@
   "keywords": [
     "express",
     "mvc",
-    "project",
-    "architecture",
-    "scaffolding",
-    "generator",
     "cli",
-    "nodejs",
-    "express-generator"
+    "project",
+    "dependency-manager",
+    "scaffold",
+    "cli-generator"
   ],
   "files": [
     "commands",
