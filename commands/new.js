@@ -80,7 +80,7 @@ const connectDB = require("./config/database");
 connectDB();
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("Server running on port", PORT));
+app.listen(PORT, () => console.log("Server running on http://localhost:" + PORT));
 `
     );
 
@@ -200,15 +200,19 @@ const path = require("path");
 
 const appPkg = require(path.join(process.cwd(), "package.json"));
 
+// Home route
 router.get("/", (req, res) => {
     res.render("home", {
         title: "Home",
+        appName: appPkg.name,
         appVersion: appPkg.version,
         expMvcVersion: "${expMvcPkg.version}",
         nodeVersion: process.version,
         expressVersion: require("express/package.json").version
     });
 });
+
+// Import and use other routes here
 
 module.exports = router;
 `
@@ -497,8 +501,6 @@ EOF
         `
 PORT=3000
 MONGODB_URI=mongodb://localhost:27017/yourdb
-JWT_SECRET=your-secret-key
-NODE_ENV=development
     `
     );
 

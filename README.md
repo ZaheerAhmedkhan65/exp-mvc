@@ -1,24 +1,31 @@
 ## exp-mvc
 
-[![npm version](https://img.shields.io/badge/npm-v1.0.8-lightgrey.svg)](https://www.npmjs.com/)
+[![npm version](https://img.shields.io/badge/npm-v1.0.90-red.svg)](https://www.npmjs.com/)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![stars](https://img.shields.io/github/stars/ZaheerAhmedkhan65/exp-mvc.svg?style=social)](https://github.com/ZaheerAhmedkhan65/exp-mvc.git)'
 ![npm downloads](https://img.shields.io/npm/dm/exp-mvc.svg)
-
-A professional Node.js Express project scaffold generator that instantly creates a clean, scalable, and production-ready folder structure based on the MVC architecture. Includes powerful CLI commands to generate controllers, models, routes, and complete CRUD scaffolds.
+ 
+ Node.js Express project generator that instantly creates a clean, scalable, and production-ready folder structure based on the MVC architecture. Includes powerful CLI commands to generate controllers, models, routes, and complete CRUD scaffolds. Also installs dependencies automatically.
 
 Designed for developers who want to skip boilerplate setup and start building features immediately.
 
 # Install
 
 ```bash
-npm install exp-mvc
+npm install -g exp-mvc
 ```
 
-After installing exp-mvc globally, run the following command:
+
+After installing exp-mvc globally , run the following command:
 
 ```bash
 expmvc new myapp
+```
+
+Or
+
+```bash
+npx exp-mvc new myapp
 ```
 
 This will create:
@@ -26,25 +33,35 @@ This will create:
 ```bash
 ./myapp
 ```
-with the full project architecture.
+with the full project structure.
 
-Inside your generated project folder, install dependencies:
-
+**Navigate to the project folder:**
 ```bash
 cd myapp
 ```
 
-configure the database connection in 'config/database.js'.
-add environment variables in '.env'
+Inside your project folder, install dependencies:
+
+```bash
+npm install
+```
+
+configure the mongodb connection in the .env file
+
+```bash
+MONGODB_URI=mongodb://localhost:27017/myapp
+```
 
 **Run the server:**
 
 ```bash
-npm run dev
-```
-or
-```bash
 npm start
+```
+
+or
+
+```bash
+npm run dev
 ```
 
 # 🔥 CLI Commands Reference
@@ -224,8 +241,6 @@ Created `.env` file in your project root:
 ```bash
 PORT=3000
 MONGODB_URI=mongodb://localhost:27017/yourdb
-JWT_SECRET=your-secret-key
-NODE_ENV=development
 ```
 
 # ❤️ Contributing
