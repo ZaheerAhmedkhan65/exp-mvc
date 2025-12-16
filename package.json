@@ -32,6 +32,7 @@
   },
   "homepage": "https://github.com/ZaheerAhmedkhan65/exp-mvc#readme",
   "dependencies": {
+    "chokidar": "^3.6.0",
     "commander": "^11.1.0"
   }
 }

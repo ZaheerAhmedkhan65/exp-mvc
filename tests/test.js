@@ -10,7 +10,7 @@ try {
     console.log('✅ Successfully loaded commands/new');
 } catch (error) {
     console.log('❌ Error loading commands/new:', error.message);
-}   
+}
 
 try {
     const generateCmd = require('../commands/generate');
