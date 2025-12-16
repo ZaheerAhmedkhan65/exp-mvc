@@ -89,7 +89,7 @@ const createRelationshipScaffold = require("../lib/generators/relationshipScaffo
 program
     .name("expmvc")
     .description("Express MVC Architecture CLI with Auto-Dependency Installation")
-    .version("1.0.70");
+    .version("1.2.0");
 
 program
     .command("new <project-name>")

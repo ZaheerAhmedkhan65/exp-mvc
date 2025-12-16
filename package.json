@@ -1,19 +1,20 @@
 {
   "name": "exp-mvc",
-  "version": "1.0.90",
+  "version": "1.2.0",
   "description": "Generate a new ExpressJS project in MVC architecture using command line interface (CLI) and auto-dependency installation.",
   "main": "index.js",
   "bin": {
     "expmvc": "bin/cli.js"
   },
   "keywords": [
+    "nodejs",
     "express",
     "mvc",
     "cli",
-    "project",
-    "dependency-manager",
     "scaffold",
-    "cli-generator"
+    "generator",
+    "boilerplate",
+    "dependency-manager"
   ],
   "files": [
     "commands",

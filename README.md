@@ -1,6 +1,6 @@
 ## exp-mvc
 
-[![npm version](https://img.shields.io/badge/npm-v1.0.90-red.svg)](https://www.npmjs.com/)
+[![npm version](https://img.shields.io/badge/npm-v1.2.0-red.svg)](https://www.npmjs.com/)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![stars](https://img.shields.io/github/stars/ZaheerAhmedkhan65/exp-mvc.svg?style=social)](https://github.com/ZaheerAhmedkhan65/exp-mvc.git)'
 ![npm downloads](https://img.shields.io/npm/dm/exp-mvc.svg)
