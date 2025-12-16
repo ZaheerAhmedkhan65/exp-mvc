@@ -27,7 +27,7 @@ All notable changes to exp-mvc will be documented in this file.
 ### Fixed
 - Initial release
 
-## [1.1.0] - 2024-12-16
+## [1.2.0] - 2024-12-16
 
 ### Added
 - Initial release
