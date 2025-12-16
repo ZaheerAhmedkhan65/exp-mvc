@@ -67,16 +67,6 @@ function createProject(projectName) {
 const app = require("./config/app");
 const connectDB = require("./config/database");
 
-// Optional security middleware (auto-installed if used)
-// Uncomment to use:
-// const helmet = require("helmet");
-// const cors = require("cors");
-// const compression = require("compression");
-//
-// app.use(helmet());
-// app.use(cors());
-// app.use(compression());
-
 connectDB();
 
 const PORT = process.env.PORT || 3000;
@@ -364,44 +354,6 @@ module.exports = router;
 `
     );
 
-     createFile(
-        path.join(projectPath, "package.json"),
-        JSON.stringify(
-            {
-                name: projectName,
-                version: "0.1.0",
-                description: "",
-                main: "server.js",
-                scripts: {
-                    start: "node server.js",
-                    dev: "nodemon server.js",
-                    "check-deps": "expmvc check-deps",
-                    "fix-deps": "expmvc fix-deps"
-                },
-                author: "",
-                license: "ISC",
-                devDependencies: {
-                    "nodemon": "^3.0.1"
-                },
-                engines: {
-                    node: ">=14.0.0"
-                },
-                dependencies: {
-                    express: "^4.19.2",
-                    dotenv: "^16.4.5",
-                    morgan: "^1.10.0",
-                    ejs: "^3.1.9",
-                    "express-ejs-layouts": "^2.5.1",
-                    mongoose: "^8.8.1",
-                    joi: "^17.11.0",
-                    "method-override": "^3.0.0"
-                }
-            },
-            null,
-            2
-        )
-    );
-
     createFile(
         path.join(projectPath, "package.json"),
         JSON.stringify(
@@ -412,7 +364,11 @@ module.exports = router;
                 main: "server.js",
                 scripts: {
                     start: "node server.js",
-                    dev: "nodemon server.js"
+                    dev: "npm run install-deps && nodemon server.js",
+                    "install-deps": "npm install nodemon --save-dev",
+                    "check-deps": "expmvc check-deps",
+                    "fix-deps": "expmvc fix-deps",
+                    "watch": "expmvc watch"
                 },
                 author: "",
                 license: "ISC",
@@ -507,8 +463,9 @@ MONGODB_URI=mongodb://localhost:27017/yourdb
     console.log("\n🎉 Done!");
     console.log(`\n👉 Next steps:
    cd ${projectName}
-   npm install express dotenv morgan ejs express-ejs-layouts mongoose joi method-override
-   node server.js
+   npm install
+   node server.js or npm run dev
+   npm run watch --> for auto dependency installation
 `);
 
     process.exit(0);

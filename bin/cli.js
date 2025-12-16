@@ -4,136 +4,8 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 const { program } = require("commander");
-
-// Auto-install dependencies function
-async function autoInstallDependencies() {
-    try {
-        console.log("🔍 Checking for missing dependencies...");
-
-        // Get the project's package.json
-        const packageJsonPath = path.join(process.cwd(), 'package.json');
-
-        if (!fs.existsSync(packageJsonPath)) {
-            console.log("⚠️  No package.json found. Creating project first...");
-            return;
-        }
-
-        const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-        const installedDependencies = {
-            ...(packageJson.dependencies || {}),
-            ...(packageJson.devDependencies || {})
-        };
-
-        // Read all JS files in the project to find required packages
-        function findAllJsFiles(dir, fileList = []) {
-            const files = fs.readdirSync(dir);
-
-            files.forEach(file => {
-                const filePath = path.join(dir, file);
-                const stat = fs.statSync(filePath);
-
-                if (stat.isDirectory() && !file.includes('node_modules')) {
-                    findAllJsFiles(filePath, fileList);
-                } else if (file.endsWith('.js') && !file.includes('node_modules')) {
-                    fileList.push(filePath);
-                }
-            });
-
-            return fileList;
-        }
-
-        // Get all JS files in project
-        let jsFiles = [];
-        if (fs.existsSync('.')) {
-            jsFiles = findAllJsFiles('.');
-        }
-
-        // Common Express packages to check for (with exact npm package names)
-        const commonPackages = {
-            'express': 'express',
-            'mongoose': 'mongoose',
-            'dotenv': 'dotenv',
-            'morgan': 'morgan',
-            'ejs': 'ejs',
-            'express-ejs-layouts': 'express-ejs-layouts',
-            'joi': 'joi',
-            'method-override': 'method-override',
-            'helmet': 'helmet',
-            'cors': 'cors',
-            'compression': 'compression',
-            'bcrypt': 'bcrypt',
-            'jsonwebtoken': 'jsonwebtoken',
-            'multer': 'multer',
-            'nodemailer': 'nodemailer',
-            'nodemon': 'nodemon'
-        };
-
-        const packagesToInstall = new Set();
-
-        // Check each JS file for required imports
-        for (const filePath of jsFiles) {
-            try {
-                const content = fs.readFileSync(filePath, 'utf8');
-
-                for (const [pkgName, importName] of Object.entries(commonPackages)) {
-                    // Check for require statements
-                    const requirePattern = new RegExp(`require\\(['"]${importName}['"]\\)`, 'i');
-                    // Check for import statements
-                    const importPattern = new RegExp(`from ['"]${importName}['"]`, 'i');
-
-                    if ((requirePattern.test(content) || importPattern.test(content)) &&
-                        !installedDependencies[pkgName]) {
-                        packagesToInstall.add(pkgName);
-                    }
-                }
-            } catch (error) {
-                // Skip file read errors
-            }
-        }
-
-        // Install missing packages if any
-        if (packagesToInstall.size > 0) {
-            const packagesArray = Array.from(packagesToInstall);
-            console.log(`\n📦 Installing missing dependencies: ${packagesArray.join(', ')}`);
-
-            try {
-                // Install dev dependencies separately
-                const devPackages = packagesArray.filter(pkg => pkg === 'nodemon');
-                const regularPackages = packagesArray.filter(pkg => pkg !== 'nodemon');
-
-                if (regularPackages.length > 0) {
-                    console.log(`Installing: ${regularPackages.join(' ')}`);
-                    execSync(`npm install ${regularPackages.join(' ')}`, {
-                        stdio: 'inherit',
-                        cwd: process.cwd()
-                    });
-                }
-
-                if (devPackages.length > 0) {
-                    console.log(`Installing dev dependencies: ${devPackages.join(' ')}`);
-                    execSync(`npm install --save-dev ${devPackages.join(' ')}`, {
-                        stdio: 'inherit',
-                        cwd: process.cwd()
-                    });
-                }
-
-                console.log('✅ All dependencies installed successfully!');
-            } catch (error) {
-                console.log('⚠️  Could not install dependencies automatically. Please run:');
-                if (regularPackages.length > 0) {
-                    console.log(`npm install ${regularPackages.join(' ')}`);
-                }
-                if (devPackages.length > 0) {
-                    console.log(`npm install --save-dev ${devPackages.join(' ')}`);
-                }
-            }
-        } else {
-            console.log('✅ All dependencies are already installed!');
-        }
-    } catch (error) {
-        console.log('⚠️  Error checking dependencies:', error.message);
-    }
-}
+const watch = require('../commands/watch');
+const checkDeps = require('../commands/check-deps');
 
 // Improved project creation with auto-install
 async function enhancedCreateProject(projectName) {
@@ -229,8 +101,7 @@ program
     .alias("g")
     .description("Generate CRUD components")
     .option("-f, --fields <fields>", "Model fields (name:string,email:string)")
-    .action(async (type, name, fields, options) => {
-        await autoInstallDependencies();
+    .action((type, name, fields, options) => {
         generate(type, name, fields, options);
     });
 
@@ -240,8 +111,7 @@ program
     .description("Create relationships between models")
     .option("--field <fieldName>", "Field name for the relationship")
     .option("--required", "Make relationship required")
-    .action(async (type, fromModel, toModel, options) => {
-        await autoInstallDependencies();
+    .action((type, fromModel, toModel, options) => {
         createRelationship(fromModel, toModel, type, {
             fieldName: options.field,
             required: options.required
@@ -252,8 +122,7 @@ program
     .command("scaffold-relationship <parentModel> <childModel> <relationshipType>")
     .alias("sr")
     .description("Scaffold complete relationship with models, services, and controllers")
-    .action(async (parentModel, childModel, relationshipType) => {
-        await autoInstallDependencies();
+    .action((parentModel, childModel, relationshipType) => {
         createRelationshipScaffold(parentModel, childModel, relationshipType, process.cwd());
     });
 
@@ -261,13 +130,13 @@ program
     .command("check-deps")
     .alias("cd")
     .description("Check and install missing dependencies")
-    .action(autoInstallDependencies);
+    .action(checkDeps);
 
 program
     .command("fix-deps")
     .description("Fix missing dependencies and start the server")
     .action(async () => {
-        await autoInstallDependencies();
+        await checkDeps();
         console.log("\n🚀 Starting server...");
         try {
             execSync("npm start", {
@@ -278,6 +147,11 @@ program
             console.log("❌ Failed to start server.");
         }
     });
+
+program
+    .command('watch') // Add this command
+    .description('Watch for file changes and auto-check dependencies')
+    .action(watch);
 
 // Parse arguments
 program.parse(process.argv);

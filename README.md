@@ -5,7 +5,7 @@
 [![stars](https://img.shields.io/github/stars/ZaheerAhmedkhan65/exp-mvc.svg?style=social)](https://github.com/ZaheerAhmedkhan65/exp-mvc.git)'
 ![npm downloads](https://img.shields.io/npm/dm/exp-mvc.svg)
  
- Node.js Express project generator that instantly creates a clean, scalable, and production-ready folder structure based on the MVC architecture. Includes powerful CLI commands to generate controllers, models, routes, and complete CRUD scaffolds. Also installs dependencies automatically.
+ Node.js Express project generator that instantly creates a clean, scalable, and production-ready folder structure based on the MVC architecture. Includes powerful CLI commands to generate controllers, models, routes, and complete CRUD scaffolds with auto-dependency installation.
 
 Designed for developers who want to skip boilerplate setup and start building features immediately.
 
@@ -63,6 +63,14 @@ or
 ```bash
 npm run dev
 ```
+
+Run the watch command to automatically install dependencies on file save:
+
+```bash
+npm run watch
+``` 
+
+**Open the browser at http://localhost:3000**
 
 # 🔥 CLI Commands Reference
 
